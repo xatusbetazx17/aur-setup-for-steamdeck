@@ -44,8 +44,9 @@ Clean up caches after installation.
 Open the terminal on your Steam Deck and create the script file:
 
 nano ~/paru-setup.sh
-Paste the following script:
+## Paste the following script:
 
+```bash
 #!/bin/bash
 
 # Function to check if a command exists
@@ -86,6 +87,10 @@ echo "Cleaning up package cache..."
 paru -Sc --noconfirm
 
 echo "Paru setup and package installation completed!"
+
+```
+
+
 
 
 ##2. Save and Exit:
