@@ -76,17 +76,24 @@ else
     echo "Paru is already installed."
 fi
 
-# Step 2: Install AUR packages using paru (add your desired packages here)
+# Step 2: Import Arch keyring and refresh pacman keys
+echo "Importing Arch keyring and refreshing pacman keys..."
+sudo pacman-key --init
+sudo pacman-key --populate archlinux
+sudo pacman -Sy
+
+# Step 3: Install AUR packages using paru (add your desired packages here)
 echo "Installing AUR packages..."
 
 # Example packages, you can add more as needed
 paru -S --noconfirm mpv aria2 fzf
 
-# Step 3: Clean up cache if necessary
+# Step 4: Clean up cache if necessary
 echo "Cleaning up package cache..."
 paru -Sc --noconfirm
 
 echo "Paru setup and package installation completed!"
+
 
 ```
 
