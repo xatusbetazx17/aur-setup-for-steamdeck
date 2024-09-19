@@ -151,9 +151,11 @@ Once the script has completed running, you can re-enable the read-only filesyste
 bash
 Copy code
 sudo steamos-readonly enable
-License:
-This project is licensed under the MIT License.
 
+## Created by Xatusbetazx17
+
+## License:
+This project is licensed under the MIT License.
 Feel free to modify the script or contribute to this repository!
 
 
