@@ -41,7 +41,7 @@ It installs the Chaotic-AUR keyring and mirrorlist.
 
 
 ## Script Instructions
-This script will:
+## This script will:
 
 Check if paru is installed, and install it if necessary.
 Install AUR packages using paru.
