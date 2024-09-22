@@ -168,9 +168,9 @@ Verify that Chaotic-AUR is listed in your /etc/pacman.conf file
 ```bash
 [chaotic-aur]
 Include = /etc/pacman.d/chaotic-mirrorlist
-
-## The script will:
 ```
+## The script will:
+
 
 Check if paru is installed.
 Install paru if it is not already installed.
