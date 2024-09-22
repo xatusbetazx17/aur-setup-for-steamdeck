@@ -11,6 +11,13 @@ This repository contains a script to easily set up **paru**, an AUR helper, on a
 - **AUR Package Management**: Easily installs specified AUR packages like `mpv`, `aria2`, and `fzf`.
 - **Cache Cleanup**: Cleans up the package cache after installation to save space.
 - **Customizable**: Modify the script to add or remove AUR packages as needed.
+- **Check and Install fakeroot** The script checks if fakeroot is installed. If it isn't, the script installs it using pacman.
+- **Set Pacman's SigLevel to Never** SigLevel = Never ensures that packages from Chaotic-AUR and AUR can be installed without failing due to PGP signature verification issues.
+The script checks if SigLevel is set to Never in /etc/pacman.conf. If it’s not, it modifies the configuration file to set it to Never.
+- **Install Chaotic-AUR Keyring and Mirrorlist**
+The script installs the necessary Chaotic-AUR keyring and mirrorlist:It imports the primary Chaotic-AUR key (3056513887B78AEB).
+It locally signs the key to ensure it is trusted by the system.
+It installs the Chaotic-AUR keyring and mirrorlist.
 
 ---
 
@@ -150,7 +157,20 @@ To test the script and ensure it works as expected, run:
 
 ~/paru-setup.sh
 
+## 5 Check Pacman Configuration
+Verify that Chaotic-AUR is listed in your /etc/pacman.conf file
+
+## Open /etc/pacman.conf:
+
+``sudo nano /etc/pacman.conf``
+
+## Scroll to the bottom and ensure you see the following lines:
+```bash
+[chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist
+
 ## The script will:
+```
 
 Check if paru is installed.
 Install paru if it is not already installed.
@@ -166,9 +186,9 @@ Open the paru-setup.sh file in a text editor:
 nano ~/paru-setup.sh
 Add or remove the AUR packages you want to install in the script. For example:
 
-bash
-Copy code
+```bash
 paru -S --noconfirm mpv aria2 fzf
+```
 You can replace these packages with others from the AUR, depending on your needs.
 
 Example AUR Packages:
@@ -181,7 +201,7 @@ If you receive a "Permission Denied" error, ensure you've run the following comm
 
 bash
 Copy code
-chmod +x ~/paru-setup.sh
+```chmod +x ~/paru-setup.sh```
 Read-Only Filesystem:
 Ensure the read-only mode is disabled by running the following command before executing the script:
 
