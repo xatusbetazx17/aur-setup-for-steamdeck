@@ -11,7 +11,7 @@ on:
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     permissions:
       security-events: write
       packages: read
@@ -22,7 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - language: 'python'
+          - language: 'javascript-typescript'  # Only include languages you need
 
     steps:
     - name: Checkout repository
@@ -32,7 +32,6 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-        build-mode: ${{ matrix.build-mode }}
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
@@ -43,8 +42,3 @@ jobs:
       uses: actions/setup-node@v4.0.4
       with:
         node-version: '16.x'  # Specify the Node.js version you need
-
-    - name: Build Python code
-      if: matrix.language == 'python'
-      run: |
-        pip install -r requirements.txt
