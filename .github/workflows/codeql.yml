@@ -56,4 +56,21 @@ jobs:
       uses: actions/setup-node@v4.0.4
       with:
         node-version: '16.x'  # Specify the Node.js version you need
-        cache: 'npm'  # Optional: Use npm caching to speed up workflow
+        cache: 'none'  # Disable caching if lock files aren't present
+
+    # Build your code before analysis
+    - name: Build JavaScript/TypeScript code
+      if: matrix.language == 'javascript-typescript'
+      run: |
+        npm install
+        npm run build
+
+    - name: Build Python code
+      if: matrix.language == 'python'
+      run: |
+        pip install -r requirements.txt
+
+    - name: Build Go code
+      if: matrix.language == 'go'
+      run: |
+        go build ./...
