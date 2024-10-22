@@ -164,8 +164,8 @@ Verify that Chaotic-AUR is listed in your /etc/pacman.conf file
 
 ``sudo nano /etc/pacman.conf``
 
-##Note:
-you need to change  this to never first before add the lines to the pacman.conf 
+## Note:
+you need to change  this to never first  and save it execute the script and them add the lines to the pacman.conf  
 ```SigLevel    = Never```
 
 ## Scroll to the bottom and ensure you see the following lines:
