@@ -92,7 +92,7 @@ else
 fi
 
 # Step 3: Set signature level to 'Never' if not already set
-echo "Checking if signaturelevel is set to 'Never'..."
+echo "Checking if signature level is set to 'Never'..."
 
 if ! grep -q "SigLevel = Never" /etc/pacman.conf; then
     echo "Setting SigLevel to 'Never' in pacman.conf..."
@@ -101,7 +101,14 @@ else
     echo "SigLevel is already set to 'Never'."
 fi
 
-# Step 4: Install Chaotic-AUR Key and Mirrorlist
+# Step 4: Initialize and Configure Chaotic-AUR Keyring
+
+# Initialize pacman keyring (if not already initialized)
+echo "Initializing pacman keyring..."
+sudo pacman-key --init
+
+# Populate the Arch keyring
+sudo pacman-key --populate archlinux
 
 # Import the primary key for Chaotic-AUR
 echo "Importing the primary key for Chaotic-AUR..."
@@ -110,7 +117,7 @@ sudo pacman-key --lsign-key 3056513887B78AEB
 
 # Install Chaotic-AUR keyring and mirrorlist
 echo "Installing Chaotic-AUR keyring and mirrorlist..."
-sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' \
+sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' \
 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 
 # Step 5: Append Chaotic-AUR to pacman.conf if not already added
@@ -136,6 +143,7 @@ echo "Cleaning up package cache..."
 paru -Sc --noconfirm
 
 echo "Paru and Chaotic-AUR setup and package installation completed!"
+
 
 
 ```
